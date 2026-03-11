@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cnk-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: cnk.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: python-fe-1-service
+            port:
+              name: http-frontend
+      - path: /api
+        pathType: Prefix
+        backend:
+          service:
+            name: python-be-1-service
+            port:
+              name: http-backend
