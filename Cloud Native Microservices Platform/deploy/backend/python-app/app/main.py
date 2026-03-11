@@ -1,3 +1,7 @@
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 import os
 
 from fastapi import FastAPI
@@ -65,8 +69,9 @@ def read_root():
 def health_check():
     """
     This function is used for the k8s health check
-    and returns a string that says "Health check backend👌
+    and returns a string that says "Health check backend👌"
     """
+    logger.info("Backend health check endpoint called")
     return "Health check backend👌"
 
 
